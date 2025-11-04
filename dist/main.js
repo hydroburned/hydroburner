@@ -18,14 +18,59 @@
     { id: 'saas-analytics-dashboard', title: 'SaaS Analytics Dashboard', tagline: 'Empowering B2B customers with actionable data insights.', thumbnailUrl: 'https://picsum.photos/seed/analytics/800/600', company: 'FlippingBook', domain: 'B2B SaaS - Data Visualization', problem: 'Our enterprise customers lacked a clear, consolidated view of their publication performance. They needed a way to track reader engagement, analyze content effectiveness, and demonstrate ROI to their stakeholders.', role: 'Product Designer', team: ['Product Manager', 'Data Scientist', '3 Frontend Engineers', '1 Backend Engineer'], process: [{ title: 'Stakeholder Interviews', description: 'Interviewed key account managers and enterprise clients to identify the most critical metrics and KPIs. Mapped out their current (often manual) reporting processes to understand existing pain points.' }, { title: 'Data-Driven Design', description: 'Worked with a data scientist to define available data points and design a flexible, widget-based dashboard. Created multiple iterations of data visualizations (graphs, charts, heatmaps) in Figma to find the most intuitive representations.' }, { title: 'Prototyping & Feedback', description: 'Built an interactive prototype with realistic data to test with a pilot group of customers. Gathered feedback to refine the layout, filter controls, and the overall narrative of the dashboard.' }], solution: { description: 'A customizable analytics dashboard that provides customers with a comprehensive overview of their content performance. Users can track views, engagement times, link clicks, and audience demographics. The dashboard includes date-range filtering, customizable reports, and the ability to export data as CSV or PDF.', images: ['https://picsum.photos/seed/da-solution1/1200/800', 'https://picsum.photos/seed/da-solution2/1200/800'] }, impact: 'Increased customer satisfaction for enterprise clients by 25%. The dashboard became a premium feature, contributing to a 15% increase in annual contract value for new sign-ups. Reduced support tickets related to data requests by 60%.', learnings: 'Data visualization is about storytelling. The biggest challenge was not just displaying data, but presenting it in a narrative that was easy for non-technical users to understand and act upon.', links: [{ label: 'View Live Dashboard', url: '#' }], tags: ['Data Viz', 'B2B', 'Dashboard'], impactMetrics: [{ value: '25%', label: 'Satisfaction Increase' }, { value: '60%', label: 'Support Tickets Reduced' }] }
   ];
   const liveProjects = [
-    { id: 'luna-bakery', title: 'Luna Bakery & Cafe', description: 'A responsive landing page that boosted online orders by 30% through a streamlined menu and clear call-to-actions.', imageUrl: 'https://picsum.photos/seed/bakery/800/600', liveUrl: '#', domain: 'Local Business', platform: 'Tilda' },
-    { id: 'marco-vela-photo', title: 'Marco Vela Photography', description: 'An elegant, image-forward portfolio site designed to showcase high-resolution work and generate client inquiries.', imageUrl: 'https://picsum.photos/seed/photographer/800/600', liveUrl: '#', domain: 'Portfolio', platform: 'Tilda' },
-    { id: 'earthly-goods', title: 'Earthly Goods Store', description: 'A simple and secure e-commerce setup for a local artisan, enabling them to sell handmade products online for the first time.', imageUrl: 'https://picsum.photos/seed/ecommerce/800/600', liveUrl: '#', domain: 'E-commerce', platform: 'Tilda' },
-    { id: 'summit-advisors', title: 'Summit Financial Advisors', description: 'A professional website for a financial consulting firm, designed to build client confidence and capture new leads.', imageUrl: 'https://picsum.photos/seed/advisors/800/600', liveUrl: '#', domain: 'Corporate', platform: 'Tilda' }
+    { id: 'dom-design', title: 'Dom Design', description: 'A sleek portfolio website for a high-end interior design studio, showcasing residential and commercial projects with a focus on clean aesthetics.', imageUrl: 'https://picsum.photos/seed/interiordesign/800/600', liveUrl: 'https://xn--80ahameiqnc.xn--p1ai/', domain: 'Portfolio', platform: 'Tilda' },
+    { id: 'sportskill', title: 'Sport Skill', description: 'Developed the brand identity, logo, and a comprehensive website for a multi-disciplinary children\'s sports club, featuring memberships, class schedules, and e-commerce for merchandise.', imageUrl: 'https://picsum.photos/seed/kidsport/800/600', liveUrl: 'https://sportskill.ru/', domain: 'Portfolio & Sport-Tech', platform: 'Tilda' },
+    { id: 'litao', title: 'Litao Yoga', description: 'Created a complete digital presence for a yoga teacher, including a personal dashboard for course access and a fully integrated online payment system with time-based restrictions.', imageUrl: 'https://picsum.photos/seed/yogastudio/800/600', liveUrl: 'https://litao.ru/', domain: 'Yoga & E-commerce', platform: 'Tilda' },
+    { id: 'idifashion', title: 'IDI Fashion', description: 'Designed the brand identity and a visually rich website for a major Russian fashion competition, handling large-scale photo/video content for numerous participants and projects.', imageUrl: 'https://picsum.photos/seed/fashioncontest/800/600', liveUrl: 'https://idifashion.ru/', domain: 'Web-Contest & Ed-Tech', platform: 'Tilda' }
   ];
   const skillCategories = [
-    { name: 'Design', skills: [{ name: 'Product Design', description: 'Creating intuitive, user-centered interfaces that solve complex problems.', level: 95, tools: ['Figma', 'Sketch', 'Adobe XD'] }, { name: 'Design Systems', description: 'Building and maintaining scalable, consistent, and well-documented systems.', level: 90, tools: ['Figma Libraries', 'Storybook', 'Zeroheight'] }, { name: 'Prototyping', description: 'Bringing ideas to life with interactive prototypes to test and validate concepts.', level: 85, tools: ['Figma', 'Principle', 'Framer'] }] },
-    { name: 'Strategy & Research', skills: [{ name: 'User Research', description: 'Conducting interviews and tests to uncover user needs and inform strategy.', level: 80, tools: ['Maze', 'UserTesting.com', 'Dovetail'] }, { name: 'Product Strategy', description: 'Aligning user needs with business goals to define product roadmaps and features.', level: 85, tools: ['Miro', 'Notion', 'Jira'] }, { name: 'Data Analysis', description: 'Interpreting analytics and metrics to understand user behavior and measure design impact.', level: 75, tools: ['Google Analytics', 'Amplitude', 'Mixpanel'] }] }
+      {
+          name: 'Design',
+          skills: [
+              { name: 'Product Design', description: 'Creating intuitive, user-centered interfaces that solve complex problems.', level: 95, tools: ['Figma', 'Sketch', 'Adobe XD'] },
+              { name: 'Design Systems', description: 'Building and maintaining scalable, consistent, and well-documented systems.', level: 90, tools: ['Figma Libraries', 'Storybook', 'Zeroheight'] },
+              { name: 'Prototyping', description: 'Bringing ideas to life with interactive prototypes to test and validate concepts.', level: 85, tools: ['Figma', 'Principle', 'Framer'] },
+              { name: 'Visual Design (UI)', description: 'Crafting pixel-perfect, aesthetically pleasing interfaces that reinforce brand identity.', level: 90, tools: ['Adobe Suite', 'Color Theory', 'Typography'] }
+          ]
+      },
+      {
+          name: 'Soft Skills',
+          skills: [
+              {
+                  name: 'Communication & Storytelling',
+                  description: 'Simplifying complexity for both technical and business stakeholders.',
+                  level: 95,
+                  tools: ['Presentations', 'Storytelling', 'Alignment']
+              },
+              {
+                  name: 'Leadership & Mentoring',
+                  description: 'Onboarding junior designers and facilitating team knowledge sharing.',
+                  level: 90,
+                  tools: ['Team Building', 'Feedback', 'Mentoring']
+              },
+              {
+                  name: 'Proactivity & Ownership',
+                  description: 'Taking initiative and driving solutions from ideation to launch.',
+                  level: 95,
+                  tools: ['Initiative', 'Problem Solving', 'Roadmapping']
+              },
+              {
+                  name: 'Stakeholder Management',
+                  description: 'Aligning work with business goals, with empathy for all product aspects.',
+                  level: 90,
+                  tools: ['Negotiation', 'Empathy', 'Collaboration']
+              },
+          ]
+      },
+      {
+          name: 'Strategy & Research',
+          skills: [
+              { name: 'User Research', description: 'Conducting interviews and tests to uncover user needs and inform strategy.', level: 80, tools: ['Maze', 'UserTesting.com', 'Dovetail'] },
+              { name: 'Product Strategy', description: 'Aligning user needs with business goals to define product roadmaps and features.', level: 85, tools: ['Miro', 'Notion', 'Jira'] },
+              { name: 'Data Analysis', description: 'Interpreting analytics to understand user behavior and measure design impact.', level: 75, tools: ['Amplitude', 'Mixpanel', 'GA'] },
+              { name: 'Competitive Analysis', description: 'Evaluating market landscape to identify opportunities and strategic advantages.', level: 80, tools: ['SWOT', 'Market Research', 'Reports'] }
+          ]
+      }
   ];
 
   // --- ICONS ---
@@ -150,136 +195,346 @@
     );
   };
   const CurvedGallery = ({ projects }) => {
-      const scrollContainerRef = useRef(null);
-      const [displayProjects, setDisplayProjects] = useState([]);
-      const isJumping = useRef(false), isDragging = useRef(false), hasBeenCentered = useRef(false), startX = useRef(0), scrollLeft = useRef(0), scrollEndTimeout = useRef(null), animationFrameRef = useRef(null);
-      useEffect(() => { projects.length > 0 ? setDisplayProjects([...projects, ...projects, ...projects]) : setDisplayProjects([]); }, [projects]);
-      const updateTransforms = useCallback(() => {
-          const scrollContainer = scrollContainerRef.current; if (!scrollContainer) return;
-          const viewportCenterX = scrollContainer.getBoundingClientRect().left + scrollContainer.offsetWidth / 2;
-          const children = Array.from(scrollContainer.children); const scrollContainerWidth = scrollContainer.offsetWidth;
-          children.forEach(child => {
-              if (child.classList.contains('gallery-item')) {
-                  const rect = child.getBoundingClientRect(); const cardCenterX = rect.left + rect.width / 2;
-                  const distanceFromCenter = cardCenterX - viewportCenterX; const deadZone = 10;
-                  let opacity = 1, transform = 'perspective(1000px) rotateY(0deg) scale(1)', zIndex = 20;
-                  if (Math.abs(distanceFromCenter) > deadZone) {
-                      const normalizedDistance = distanceFromCenter / (scrollContainerWidth / 2);
-                      const rotateY = normalizedDistance * -25; const scale = 1 - Math.abs(normalizedDistance) * 0.1;
-                      zIndex = 10 - Math.abs(Math.round(normalizedDistance * 10)); opacity = Math.max(0.4, 1 - Math.abs(normalizedDistance) * 0.6);
-                      transform = `perspective(1000px) rotateY(${rotateY}deg) scale(${scale})`;
-                  }
-                  child.style.opacity = `${opacity}`; child.style.transform = transform; child.style.zIndex = `${zIndex}`;
+    const scrollContainerRef = useRef(null);
+    const [displayProjects, setDisplayProjects] = useState([]);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const isJumping = useRef(false);
+    const isDragging = useRef(false);
+    const hasBeenCentered = useRef(false);
+    const startX = useRef(0);
+    const scrollLeft = useRef(0);
+    const scrollEndTimeout = useRef(null);
+    const animationFrameRef = useRef(null);
+  
+    useEffect(() => {
+      if (projects.length > 0) {
+        setDisplayProjects([...projects, ...projects, ...projects]);
+      } else {
+        setDisplayProjects([]);
+      }
+    }, [projects]);
+  
+    const updateTransforms = useCallback(() => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+  
+      const viewportCenterX = scrollContainer.getBoundingClientRect().left + scrollContainer.offsetWidth / 2;
+      const children = Array.from(scrollContainer.children);
+      const scrollContainerWidth = scrollContainer.offsetWidth;
+  
+      children.forEach(child => {
+        if (child.classList.contains('gallery-item')) {
+          const rect = child.getBoundingClientRect();
+          const cardCenterX = rect.left + rect.width / 2;
+          const distanceFromCenter = cardCenterX - viewportCenterX;
+          const deadZone = 10;
+  
+          let opacity = 1;
+          let transform = 'perspective(1000px) rotateY(0deg) scale(1)';
+          let zIndex = 20;
+  
+          if (Math.abs(distanceFromCenter) > deadZone) {
+            const normalizedDistance = distanceFromCenter / (scrollContainerWidth / 2);
+            const rotateY = normalizedDistance * -25;
+            const scale = 1 - Math.abs(normalizedDistance) * 0.15;
+            zIndex = 10 - Math.abs(Math.round(normalizedDistance * 10));
+            opacity = Math.max(0.4, 1 - Math.abs(normalizedDistance) * 0.6);
+  
+            transform = `perspective(1000px) rotateY(${rotateY}deg) scale(${scale})`;
+          }
+  
+          child.style.opacity = `${opacity}`;
+          child.style.transform = transform;
+          child.style.zIndex = `${zIndex}`;
+        }
+      });
+    }, []);
+  
+    useEffect(() => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer || hasBeenCentered.current || displayProjects.length === 0) return;
+  
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (entry.isİntersecting) {
+            hasBeenCentered.current = true;
+  
+            const firstItem = scrollContainer.querySelector('.gallery-item');
+            if (firstItem) {
+              const itemWidth = firstItem.offsetWidth;
+              if (itemWidth > 0) {
+                const initialScrollLeft = projects.length * itemWidth;
+  
+                setActiveIndex(0);
+                isJumping.current = true;
+                scrollContainer.scrollLeft = initialScrollLeft;
+  
+                requestAnimationFrame(() => {
+                  updateTransforms();
+                  requestAnimationFrame(() => {
+                    isJumping.current = false;
+                  });
+                });
               }
-          });
-      }, []);
-      useEffect(() => {
-          const scrollContainer = scrollContainerRef.current; if (!scrollContainer || hasBeenCentered.current || displayProjects.length === 0) return;
-          const observer = new IntersectionObserver((entries) => {
-              if (entries[0].isIntersecting) {
-                  hasBeenCentered.current = true; const firstItem = scrollContainer.querySelector('.gallery-item');
-                  if (firstItem) {
-                      const itemWidth = firstItem.offsetWidth; if (itemWidth > 0) {
-                          const initialScrollLeft = projects.length * itemWidth; isJumping.current = true;
-                          scrollContainer.scrollLeft = initialScrollLeft;
-                          requestAnimationFrame(() => { updateTransforms(); requestAnimationFrame(() => { isJumping.current = false; }); });
-                      }
-                  } observer.disconnect();
-              }
-          }, { threshold: 0.1 }); observer.observe(scrollContainer); return () => observer.disconnect();
-      }, [displayProjects, projects.length, updateTransforms]);
-      const smoothScrollTo = useCallback((target, duration = 150) => {
-          const scrollContainer = scrollContainerRef.current; if (!scrollContainer) return;
-          const start = scrollContainer.scrollLeft, change = target - start; let startTime = null;
-          const animateScroll = (currentTime) => {
-              if (startTime === null) startTime = currentTime;
-              const elapsed = currentTime - startTime, t = Math.min(1, elapsed / duration), easedT = t * (2 - t);
-              scrollContainer.scrollLeft = start + change * easedT;
-              if (elapsed < duration) animationFrameRef.current = requestAnimationFrame(animateScroll); else { scrollContainer.scrollLeft = target; updateTransforms(); }
-          };
-          if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+            }
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+  
+      observer.observe(scrollContainer);
+  
+      return () => {
+        observer.disconnect();
+      };
+    }, [displayProjects, projects.length, updateTransforms]);
+  
+    const smoothScrollTo = useCallback((target, duration = 250) => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+  
+      const start = scrollContainer.scrollLeft;
+      const change = target - start;
+      let startTime = null;
+  
+      const animateScroll = (currentTime) => {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+  
+        const t = Math.min(1, elapsed / duration);
+        const easedT = t * (2 - t); // Ease out quad
+  
+        scrollContainer.scrollLeft = start + change * easedT;
+  
+        if (elapsed < duration) {
           animationFrameRef.current = requestAnimationFrame(animateScroll);
-      }, [updateTransforms]);
-      const snapToCenter = useCallback(() => {
-          const scrollContainer = scrollContainerRef.current; if (!scrollContainer || projects.length <= 1) return;
-          const itemWidth = scrollContainer.querySelector('.gallery-item')?.offsetWidth || 0; if (itemWidth === 0) return;
-          const closestItemIndex = Math.round(scrollContainer.scrollLeft / itemWidth);
-          const targetScrollLeft = closestItemIndex * itemWidth; smoothScrollTo(targetScrollLeft);
-      }, [projects.length, smoothScrollTo]);
-      const handleScroll = useCallback(() => {
-          if (isJumping.current) { requestAnimationFrame(updateTransforms); return; }
-          const scrollContainer = scrollContainerRef.current; if (!scrollContainer) return;
-          const children = Array.from(scrollContainer.children); const itemWidth = children.find(c => c.classList.contains('gallery-item'))?.offsetWidth || 0; if (itemWidth === 0) return;
-          const originalSetWidth = projects.length * itemWidth; const currentScroll = scrollContainer.scrollLeft;
-          const jumpToMiddle = (newScrollLeft) => {
-              isJumping.current = true; children.forEach(child => child.classList.add('no-transition'));
-              scrollContainer.scrollLeft = newScrollLeft;
-              requestAnimationFrame(() => { updateTransforms(); requestAnimationFrame(() => { children.forEach(child => child.classList.remove('no-transition')); isJumping.current = false; }); });
-          };
-          if (currentScroll >= originalSetWidth * 2 - (itemWidth / 2)) { jumpToMiddle(currentScroll - originalSetWidth); return; }
-          if (currentScroll <= originalSetWidth - (itemWidth / 2)) { jumpToMiddle(currentScroll + originalSetWidth); return; }
-          requestAnimationFrame(updateTransforms);
-          if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current);
-          scrollEndTimeout.current = window.setTimeout(() => { if (!isDragging.current) snapToCenter(); }, 150);
-      }, [projects.length, updateTransforms, snapToCenter]);
-      useEffect(() => {
-          const scrollContainer = scrollContainerRef.current; if (!scrollContainer) return;
-          scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
-          return () => { scrollContainer.removeEventListener('scroll', handleScroll); if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current); if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current); };
-      }, [handleScroll]);
-      const handleMouseDown = (e) => {
-          if (!scrollContainerRef.current) return; if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-          isDragging.current = true; startX.current = e.pageX - scrollContainerRef.current.offsetLeft; scrollLeft.current = scrollContainerRef.current.scrollLeft;
-          scrollContainerRef.current.style.cursor = 'grabbing'; scrollContainerRef.current.style.userSelect = 'none';
+        } else {
+          scrollContainer.scrollLeft = target;
+          updateTransforms();
+        }
       };
-      const handleMouseLeaveOrUp = () => {
-          if (!scrollContainerRef.current || !isDragging.current) return; isDragging.current = false;
-          scrollContainerRef.current.style.cursor = 'grab'; scrollContainerRef.current.style.userSelect = 'auto'; snapToCenter();
+  
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = requestAnimationFrame(animateScroll);
+    }, [updateTransforms]);
+  
+    const snapToCenter = useCallback(() => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer || projects.length <= 1) return;
+  
+      const itemWidth = scrollContainer.querySelector('.gallery-item')?.offsetWidth || 0;
+      if (itemWidth === 0) return;
+  
+      const closestItemIndex = Math.round(scrollContainer.scrollLeft / itemWidth);
+      const targetScrollLeft = closestItemIndex * itemWidth;
+  
+      setActiveIndex(closestItemIndex % projects.length);
+      smoothScrollTo(targetScrollLeft);
+    }, [projects.length, smoothScrollTo]);
+  
+    const handleScroll = useCallback(() => {
+      if (isJumping.current) {
+        requestAnimationFrame(updateTransforms);
+        return;
+      }
+  
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+  
+      const children = Array.from(scrollContainer.children);
+      const itemWidth = children.find(c => c.classList.contains('gallery-item'))?.offsetWidth || 0;
+      if (itemWidth === 0) return;
+  
+      const originalSetWidth = projects.length * itemWidth;
+      const currentScroll = scrollContainer.scrollLeft;
+  
+      const jumpToMiddle = (newScrollLeft) => {
+        isJumping.current = true;
+        children.forEach(child => {
+          if (child.classList.contains('gallery-item')) child.classList.add('no-transition');
+        });
+        scrollContainer.scrollLeft = newScrollLeft;
+  
+        requestAnimationFrame(() => {
+          updateTransforms();
+          requestAnimationFrame(() => {
+            children.forEach(child => {
+              if (child.classList.contains('gallery-item')) child.classList.remove('no-transition');
+            });
+            isJumping.current = false;
+          });
+        });
       };
-      const handleMouseMove = (e) => {
-          if (!isDragging.current || !scrollContainerRef.current) return; e.preventDefault();
-          const x = e.pageX - scrollContainerRef.current.offsetLeft; const walk = (x - startX.current) * 2;
-          scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
+  
+      if (currentScroll >= originalSetWidth * 2 - (itemWidth / 2)) {
+        jumpToMiddle(currentScroll - originalSetWidth);
+        return;
+      }
+  
+      if (currentScroll <= originalSetWidth - (itemWidth / 2)) {
+        jumpToMiddle(currentScroll + originalSetWidth);
+        return;
+      }
+  
+      requestAnimationFrame(updateTransforms);
+  
+      if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current);
+      scrollEndTimeout.current = window.setTimeout(() => {
+        if (!isDragging.current) {
+          snapToCenter();
+        }
+      }, 150);
+  
+    }, [projects.length, updateTransforms, snapToCenter]);
+  
+    useEffect(() => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+  
+      scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+  
+      return () => {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+        if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current);
+        if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
       };
-      if (projects.length === 0) return e('div', { className: "text-center py-10 px-4" }, e('p', { className: "text-gray-600 dark:text-gray-400 transition-colors duration-300" }, "No projects found."));
-      return e('div', { ref: scrollContainerRef, onMouseDown: handleMouseDown, onMouseLeave: handleMouseLeaveOrUp, onMouseUp: handleMouseLeaveOrUp, onMouseMove: handleMouseMove, className: "flex overflow-x-auto py-10", style: { cursor: 'grab', scrollbarWidth: 'none', msOverflowStyle: 'none' } },
-          e('style', null, `.flex.overflow-x-auto::-webkit-scrollbar { display: none; } .gallery-item.no-transition { transition: none !important; }`),
-          e('div', { className: "flex-shrink-0 w-[calc(50vw-45vw)] md:w-[calc(50vw-24rem)]" }),
-          displayProjects.map((project, index) => e('div', { key: `${project.id}-${index}`, className: "gallery-item flex-shrink-0 w-[90vw] md:w-[48rem] px-4", style: { willChange: 'transform, opacity', transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)' } }, e(ProjectCard, { project }))),
-          e('div', { className: "flex-shrink-0 w-[calc(50vw-45vw)] md:w-[calc(50vw-24rem)]" })
+    }, [handleScroll]);
+  
+    const handleMouseDown = (e) => {
+      if (!scrollContainerRef.current) return;
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+      isDragging.current = true;
+      startX.current = e.pageX - scrollContainerRef.current.offsetLeft;
+      scrollLeft.current = scrollContainerRef.current.scrollLeft;
+      scrollContainerRef.current.style.cursor = 'grabbing';
+      scrollContainerRef.current.style.userSelect = 'none';
+    };
+  
+    const handleMouseLeaveOrUp = () => {
+      if (!scrollContainerRef.current || !isDragging.current) return;
+      isDragging.current = false;
+      scrollContainerRef.current.style.cursor = 'grab';
+      scrollContainerRef.current.style.userSelect = 'auto';
+      snapToCenter();
+    };
+  
+    const handleMouseMove = (e) => {
+      if (!isDragging.current || !scrollContainerRef.current) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainerRef.current.offsetLeft;
+      const walk = (x - startX.current) * 2;
+      scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
+    };
+  
+    const handleDotClick = (index) => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+      const itemWidth = scrollContainer.querySelector('.gallery-item')?.offsetWidth || 0;
+      if (itemWidth === 0) return;
+  
+      const targetIndex = projects.length + index;
+      const targetScrollLeft = targetIndex * itemWidth;
+  
+      if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current);
+  
+      smoothScrollTo(targetScrollLeft, 400);
+      setActiveIndex(index);
+    };
+  
+    if (projects.length === 0) {
+      return e('div', { className: "text-center py-10 px-4" }, e('p', { className: "text-gray-600 dark:text-gray-400 transition-colors duration-300" }, "No projects found."));
+    }
+  
+    return e('div', { className: "relative pb-10" },
+      e('div', {
+        ref: scrollContainerRef,
+        onMouseDown: handleMouseDown,
+        onMouseLeave: handleMouseLeaveOrUp,
+        onMouseUp: handleMouseLeaveOrUp,
+        onMouseMove: handleMouseMove,
+        className: "flex overflow-x-auto pt-10",
+        style: {
+          cursor: 'grab',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }
+      },
+        e('style', null, `
+          .flex.overflow-x-auto::-webkit-scrollbar {
+              display: none;
+          }
+          .gallery-item.no-transition {
+              transition: none !important;
+          }
+        `),
+        e('div', { className: "flex-shrink-0 w-[calc(50vw-47.5vw)] md:w-[calc(50vw-28rem)]" }),
+        displayProjects.map((project, index) =>
+          e('div', {
+            key: `${project.id}-${index}`,
+            className: "gallery-item flex-shrink-0 w-[95vw] md:w-[56rem] px-4",
+            style: {
+              willChange: 'transform, opacity',
+              transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+            }
+          }, e(ProjectCard, { project: project }))
+        ),
+        e('div', { className: "flex-shrink-0 w-[calc(50vw-47.5vw)] md:w-[calc(50vw-28rem)]" })
+      ),
+      e('div', { className: "absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3" },
+        projects.map((_, index) =>
+          e('button', {
+            key: index,
+            onClick: () => handleDotClick(index),
+            'aria-label': `Go to project ${index + 1}`,
+            className: `h-2.5 w-2.5 rounded-full transition-all duration-300 ease-in-out ${activeIndex === index ? 'scale-125 bg-blue-600 dark:bg-blue-400' : 'bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500'}`
+          })
+        )
+      )
+    );
+  };
+  const SkillCard = ({ skill }) => {
+    const isTechnical = typeof skill.level !== 'undefined';
+    return e('div', { className: "group bg-white/30 dark:bg-gray-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/40 dark:border-white/20 transition-all duration-300 hover:border-blue-500/50 hover:-translate-y-1 hover:scale-[1.03]" },
+      isTechnical ? e(React.Fragment, null,
+        e('div', { className: "flex justify-between items-center" },
+          e('h4', { className: "font-heading text-lg font-bold text-gray-900 dark:text-white" }, skill.name),
+          e('span', { className: "text-sm font-semibold text-blue-600 dark:text-blue-400" }, `${skill.level}%`)
+        ),
+        e('div', { className: "relative mt-2 h-1.5 w-full bg-gray-300 dark:bg-gray-700/50 rounded-full overflow-hidden" },
+          e('div', { className: "absolute top-0 left-0 h-full bg-blue-500 rounded-full transition-all duration-300 group-hover:shadow-[0_0_10px_theme(colors.blue.500)] shimmer-bar overflow-hidden", style: { width: `${skill.level}%` } })
+        ),
+        e('div', { className: "mt-4" },
+          e('p', { className: "text-gray-600 dark:text-gray-400 text-sm mb-3" }, skill.description),
+          skill.tools && skill.tools.length > 0 && e('div', { className: "flex flex-wrap gap-2" },
+            skill.tools.map(tool => e('span', { key: tool, className: "text-xs bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full" }, tool))
+          )
+        )
+      ) : e(React.Fragment, null,
+          e('h4', { className: "font-heading text-lg font-bold text-gray-900 dark:text-white" }, skill.name),
+          e('p', { className: "mt-2 text-gray-600 dark:text-gray-400 text-sm" }, skill.description)
+      )
+    );
+  };
+  const Skills = () => {
+      return e('section', { id: "skills", className: "py-20 md:py-32 scroll-mt-20" },
+          e('div', { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+              e('div', { className: "text-left mb-12 md:mb-16" },
+                  e('h2', { className: "font-heading text-4xl md:text-5xl font-bold tracking-tight" }, "My Expertise"),
+                  e('p', { className: "mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400" }, "A combination of skills, tools, and methodologies I use to deliver high-quality products.")
+              ),
+              e('div', { className: "grid md:grid-cols-3 gap-8 md:gap-12" },
+                  skillCategories.map(category => e('div', { key: category.name },
+                      e('h3', { className: "font-heading text-2xl font-bold mb-6 text-gray-800 dark:text-gray-300" }, category.name),
+                      e('div', { className: "space-y-4" },
+                          category.skills.map(skill => e(SkillCard, { key: skill.name, skill: skill }))
+                      )
+                  ))
+              )
+          )
       );
   };
-  const SkillCard = ({ skill }) => e('div', { className: "group bg-white/30 dark:bg-gray-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/40 dark:border-white/20 transition-all duration-300 hover:border-blue-500/50 hover:-translate-y-1" },
-    e('div', { className: "flex justify-between items-center" },
-      e('h4', { className: "font-heading text-lg font-bold text-gray-900 dark:text-white" }, skill.name),
-      e('span', { className: "text-sm font-semibold text-blue-600 dark:text-blue-400" }, `${skill.level}%`)
-    ),
-    e('div', { className: "relative mt-2 h-1.5 w-full bg-gray-300 dark:bg-gray-700/50 rounded-full overflow-hidden" },
-      e('div', { className: "absolute top-0 left-0 h-full bg-blue-500 rounded-full transition-all duration-300 group-hover:shadow-[0_0_10px_theme(colors.blue.500)] shimmer-bar overflow-hidden", style: { width: `${skill.level}%` } })
-    ),
-    e('div', { className: "mt-4" },
-      e('p', { className: "text-gray-600 dark:text-gray-400 text-sm mb-3" }, skill.description),
-      e('div', { className: "flex flex-wrap gap-2" },
-        skill.tools.map(tool => e('span', { key: tool, className: "text-xs bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full" }, tool))
-      )
-    )
-  );
-  const Skills = () => e('section', { id: "skills", className: "py-20 md:py-32 scroll-mt-20" },
-    e('div', { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
-      e('div', { className: "text-left mb-12 md:mb-16" },
-        e('h2', { className: "font-heading text-4xl md:text-5xl font-bold tracking-tight" }, "My Expertise"),
-        e('p', { className: "mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400" }, "A combination of skills, tools, and methodologies I use to deliver high-quality products.")
-      ),
-      e('div', { className: "grid md:grid-cols-2 gap-8 md:gap-12" },
-        skillCategories.map(category => e('div', { key: category.name },
-          e('h3', { className: "font-heading text-2xl font-bold mb-6 text-gray-800 dark:text-gray-300" }, category.name),
-          e('div', { className: "space-y-4" },
-            category.skills.map(skill => e(SkillCard, { key: skill.name, skill: skill }))
-          )
-        ))
-      )
-    )
-  );
   const Footer = () => e('footer', { className: "absolute w-full bottom-0" },
     e('div', { className: "max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center" },
       e('p', { className: "text-sm text-gray-500 dark:text-gray-500" }, `© ${new Date().getFullYear()} Nikita Makarov. All rights reserved.`),
@@ -308,7 +563,13 @@
     const handleDesktopNavClick = (event) => handleScrollClick(event, event.currentTarget.getAttribute('href'));
     const handleOverlayLinkClick = (event, href) => {
       event.preventDefault(); setIsMobileMenuOpen(false);
-      setTimeout(() => handleScrollClick(event, href), 300);
+      setTimeout(() => {
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+      }, 300);
     };
     const handleLogoClick = (event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
     

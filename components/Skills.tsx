@@ -1,30 +1,42 @@
-
-
 import React from 'react';
 import { skillCategories, Skill } from '../data/skills';
 
 const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => (
-  <div className="group bg-white/30 dark:bg-gray-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/40 dark:border-white/20 transition-all duration-300 hover:border-blue-500/50 hover:-translate-y-1">
-    <div className="flex justify-between items-center">
-      <h4 className="font-heading text-lg font-bold text-gray-900 dark:text-white">{skill.name}</h4>
-      <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">{skill.level}%</span>
-    </div>
-    <div className="relative mt-2 h-1.5 w-full bg-gray-300 dark:bg-gray-700/50 rounded-full overflow-hidden">
-      <div
-        className="absolute top-0 left-0 h-full bg-blue-500 rounded-full transition-all duration-300 group-hover:shadow-[0_0_10px_theme(colors.blue.500)] shimmer-bar overflow-hidden"
-        style={{ width: `${skill.level}%` }}
-      />
-    </div>
-    <div className="mt-4">
-      <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{skill.description}</p>
-      <div className="flex flex-wrap gap-2">
-        {skill.tools.map(tool => (
-          <span key={tool} className="text-xs bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">
-            {tool}
-          </span>
-        ))}
-      </div>
-    </div>
+  <div className="group bg-white/30 dark:bg-gray-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/40 dark:border-white/20 transition-all duration-300 hover:border-blue-500/50 hover:-translate-y-1 hover:scale-[1.03]">
+    {/* Layout for Technical Skills */}
+    {typeof skill.level !== 'undefined' && (
+      <>
+        <div className="flex justify-between items-center">
+          <h4 className="font-heading text-lg font-bold text-gray-900 dark:text-white">{skill.name}</h4>
+          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">{skill.level}%</span>
+        </div>
+        <div className="relative mt-2 h-1.5 w-full bg-gray-300 dark:bg-gray-700/50 rounded-full overflow-hidden">
+          <div
+            className="absolute top-0 left-0 h-full bg-blue-500 rounded-full transition-all duration-300 group-hover:shadow-[0_0_10px_theme(colors.blue.500)] shimmer-bar overflow-hidden"
+            style={{ width: `${skill.level}%` }}
+          />
+        </div>
+        <div className="mt-4">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{skill.description}</p>
+          {skill.tools && skill.tools.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {skill.tools.map(tool => (
+                <span key={tool} className="text-xs bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">
+                  {tool}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </>
+    )}
+    {/* Layout for Soft Skills */}
+    {typeof skill.level === 'undefined' && (
+        <>
+            <h4 className="font-heading text-lg font-bold text-gray-900 dark:text-white">{skill.name}</h4>
+            <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{skill.description}</p>
+        </>
+    )}
   </div>
 );
 
@@ -38,7 +50,7 @@ const Skills: React.FC = () => {
             A combination of skills, tools, and methodologies I use to deliver high-quality products.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {skillCategories.map((category) => (
             <div key={category.name}>
               <h3 className="font-heading text-2xl font-bold mb-6 text-gray-800 dark:text-gray-300">{category.name}</h3>

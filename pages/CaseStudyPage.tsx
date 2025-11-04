@@ -106,12 +106,14 @@ const CaseStudyPage: React.FC = () => {
           </div>
         
           <div className="space-y-16">
-            <section id="challenge" ref={el => sectionRefs.current['challenge'] = el} className="scroll-mt-24">
+            {/* FIX: Changed ref callback to not return a value. The assignment `sectionRefs.current['challenge'] = el` implicitly returns `el`, which is not a valid return type for a ref callback. Wrapping it in curly braces makes it a statement block with an implicit `undefined` return. */}
+            <section id="challenge" ref={el => { sectionRefs.current['challenge'] = el; }} className="scroll-mt-24">
               <h2 className="font-heading text-3xl font-bold mb-4 pb-3 border-b border-gray-300 dark:border-gray-700">The Challenge</h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{project.problem}</p>
             </section>
 
-            <section id="process" ref={el => sectionRefs.current['process'] = el} className="scroll-mt-24">
+            {/* FIX: Changed ref callback to not return a value. The assignment `sectionRefs.current['process'] = el` implicitly returns `el`, which is not a valid return type for a ref callback. Wrapping it in curly braces makes it a statement block with an implicit `undefined` return. */}
+            <section id="process" ref={el => { sectionRefs.current['process'] = el; }} className="scroll-mt-24">
               <h2 className="font-heading text-3xl font-bold mb-6 pb-3 border-b border-gray-300 dark:border-gray-700">The Process</h2>
               <div className="space-y-8">
                 {project.process.map((step, index) => (
@@ -123,7 +125,8 @@ const CaseStudyPage: React.FC = () => {
               </div>
             </section>
             
-            <section id="solution" ref={el => sectionRefs.current['solution'] = el} className="scroll-mt-24">
+            {/* FIX: Changed ref callback to not return a value. The assignment `sectionRefs.current['solution'] = el` implicitly returns `el`, which is not a valid return type for a ref callback. Wrapping it in curly braces makes it a statement block with an implicit `undefined` return. */}
+            <section id="solution" ref={el => { sectionRefs.current['solution'] = el; }} className="scroll-mt-24">
               <h2 className="font-heading text-3xl font-bold mb-4 pb-3 border-b border-gray-300 dark:border-gray-700">The Solution</h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{project.solution.description}</p>
               <div className="mt-8 space-y-8">
@@ -133,12 +136,14 @@ const CaseStudyPage: React.FC = () => {
               </div>
             </section>
 
-            <section id="impact" ref={el => sectionRefs.current['impact'] = el} className="scroll-mt-24">
+            {/* FIX: Changed ref callback to not return a value. The assignment `sectionRefs.current['impact'] = el` implicitly returns `el`, which is not a valid return type for a ref callback. Wrapping it in curly braces makes it a statement block with an implicit `undefined` return. */}
+            <section id="impact" ref={el => { sectionRefs.current['impact'] = el; }} className="scroll-mt-24">
               <h2 className="font-heading text-3xl font-bold mb-4 pb-3 border-b border-gray-300 dark:border-gray-700">Impact & Insights</h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{project.impact}</p>
             </section>
 
-            <section id="learnings" ref={el => sectionRefs.current['learnings'] = el} className="scroll-mt-24">
+            {/* FIX: Changed ref callback to not return a value. The assignment `sectionRefs.current['learnings'] = el` implicitly returns `el`, which is not a valid return type for a ref callback. Wrapping it in curly braces makes it a statement block with an implicit `undefined` return. */}
+            <section id="learnings" ref={el => { sectionRefs.current['learnings'] = el; }} className="scroll-mt-24">
               <h2 className="font-heading text-3xl font-bold mb-4 pb-3 border-b border-gray-300 dark:border-gray-700">What I Learned</h2>
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">{project.learnings}</p>
             </section>

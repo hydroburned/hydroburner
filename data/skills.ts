@@ -1,8 +1,8 @@
 export interface Skill {
   name: string;
   description: string;
-  level: number; // 0-100
-  tools: string[];
+  level?: number; // 0-100
+  tools?: string[];
 }
 
 export interface SkillCategory {
@@ -32,6 +32,41 @@ export const skillCategories: SkillCategory[] = [
         level: 85,
         tools: ['Figma', 'Principle', 'Framer'],
       },
+      {
+        name: 'Visual Design (UI)',
+        description: 'Crafting pixel-perfect, aesthetically pleasing interfaces that reinforce brand identity.',
+        level: 90,
+        tools: ['Adobe Suite', 'Color Theory', 'Typography'],
+      },
+    ]
+  },
+  {
+    name: 'Soft Skills',
+    skills: [
+        {
+            name: 'Communication & Storytelling',
+            description: 'Simplifying complexity for both technical and business stakeholders.',
+            level: 95,
+            tools: ['Presentations', 'Storytelling', 'Alignment']
+        },
+        {
+            name: 'Leadership & Mentoring',
+            description: 'Onboarding junior designers and facilitating team knowledge sharing.',
+            level: 90,
+            tools: ['Team Building', 'Feedback', 'Mentoring']
+        },
+        {
+            name: 'Proactivity & Ownership',
+            description: 'Taking initiative and driving solutions from ideation to launch.',
+            level: 95,
+            tools: ['Initiative', 'Problem Solving', 'Roadmapping']
+        },
+        {
+            name: 'Stakeholder Management',
+            description: 'Aligning work with business goals, with empathy for all product aspects.',
+            level: 90,
+            tools: ['Negotiation', 'Empathy', 'Collaboration']
+        },
     ]
   },
   {
@@ -51,9 +86,15 @@ export const skillCategories: SkillCategory[] = [
       },
       {
         name: 'Data Analysis',
-        description: 'Interpreting analytics and metrics to understand user behavior and measure design impact.',
+        description: 'Interpreting analytics to understand user behavior and measure design impact.',
         level: 75,
-        tools: ['Google Analytics', 'Amplitude', 'Mixpanel'],
+        tools: ['Amplitude', 'Mixpanel', 'GA'],
+      },
+      {
+        name: 'Competitive Analysis',
+        description: 'Evaluating market landscape to identify opportunities and strategic advantages.',
+        level: 80,
+        tools: ['SWOT', 'Market Research', 'Reports'],
       },
     ]
   },

@@ -9,6 +9,7 @@ interface CurvedGalleryProps {
 const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [displayProjects, setDisplayProjects] = useState<Project[]>([]);
+    const [activeIndex, setActiveIndex] = useState(0);
     
     const isJumping = useRef(false);
     const isDragging = useRef(false);
@@ -48,7 +49,7 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
                 if (Math.abs(distanceFromCenter) > deadZone) {
                     const normalizedDistance = distanceFromCenter / (scrollContainerWidth / 2);
                     const rotateY = normalizedDistance * -25;
-                    const scale = 1 - Math.abs(normalizedDistance) * 0.1;
+                    const scale = 1 - Math.abs(normalizedDistance) * 0.15;
                     zIndex = 10 - Math.abs(Math.round(normalizedDistance * 10));
                     opacity = Math.max(0.4, 1 - Math.abs(normalizedDistance) * 0.6);
 
@@ -77,7 +78,8 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
                         const itemWidth = firstItem.offsetWidth;
                         if (itemWidth > 0) {
                             const initialScrollLeft = projects.length * itemWidth;
-
+                            
+                            setActiveIndex(0);
                             isJumping.current = true;
                             scrollContainer.scrollLeft = initialScrollLeft;
 
@@ -102,7 +104,7 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
         };
     }, [displayProjects, projects.length, updateTransforms]);
 
-    const smoothScrollTo = useCallback((target: number, duration: number = 150) => {
+    const smoothScrollTo = useCallback((target: number, duration: number = 250) => {
         const scrollContainer = scrollContainerRef.current;
         if (!scrollContainer) return;
 
@@ -115,7 +117,7 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
             const elapsed = currentTime - startTime;
             
             const t = Math.min(1, elapsed / duration);
-            const easedT = t * (2 - t);
+            const easedT = t * (2 - t); // Ease out quad
 
             scrollContainer.scrollLeft = start + change * easedT;
 
@@ -141,6 +143,7 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
         const closestItemIndex = Math.round(scrollContainer.scrollLeft / itemWidth);
         const targetScrollLeft = closestItemIndex * itemWidth;
 
+        setActiveIndex(closestItemIndex % projects.length);
         smoothScrollTo(targetScrollLeft);
     }, [projects.length, smoothScrollTo]);
 
@@ -238,6 +241,21 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
         scrollContainerRef.current.scrollLeft = scrollLeft.current - walk;
     };
 
+    const handleDotClick = (index: number) => {
+        const scrollContainer = scrollContainerRef.current;
+        if (!scrollContainer) return;
+        const itemWidth = (scrollContainer.querySelector('.gallery-item') as HTMLElement)?.offsetWidth || 0;
+        if (itemWidth === 0) return;
+
+        const targetIndex = projects.length + index;
+        const targetScrollLeft = targetIndex * itemWidth;
+        
+        if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current);
+        
+        smoothScrollTo(targetScrollLeft, 400);
+        setActiveIndex(index);
+    };
+
     if (projects.length === 0) {
         return (
             <div className="text-center py-10 px-4">
@@ -247,44 +265,61 @@ const CurvedGallery: React.FC<CurvedGalleryProps> = ({ projects }) => {
     }
 
     return (
-        <div 
-            ref={scrollContainerRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeaveOrUp}
-            onMouseUp={handleMouseLeaveOrUp}
-            onMouseMove={handleMouseMove}
-            className="flex overflow-x-auto py-10"
-            style={{ 
-                cursor: 'grab',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-            }}
-        >
-            <style>{`
-                .flex.overflow-x-auto::-webkit-scrollbar {
-                    display: none;
-                }
-                .gallery-item.no-transition {
-                    transition: none !important;
-                }
-            `}</style>
-            
-            <div className="flex-shrink-0 w-[calc(50vw-45vw)] md:w-[calc(50vw-24rem)]"></div>
+        <div className="relative pb-10">
+            <div 
+                ref={scrollContainerRef}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeaveOrUp}
+                onMouseUp={handleMouseLeaveOrUp}
+                onMouseMove={handleMouseMove}
+                className="flex overflow-x-auto pt-10"
+                style={{ 
+                    cursor: 'grab',
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none'
+                }}
+            >
+                <style>{`
+                    .flex.overflow-x-auto::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .gallery-item.no-transition {
+                        transition: none !important;
+                    }
+                `}</style>
+                
+                <div className="flex-shrink-0 w-[calc(50vw-47.5vw)] md:w-[calc(50vw-28rem)]"></div>
 
-            {displayProjects.map((project, index) => (
-                <div 
-                    key={`${project.id}-${index}`} 
-                    className="gallery-item flex-shrink-0 w-[90vw] md:w-[48rem] px-4"
-                    style={{ 
-                        willChange: 'transform, opacity',
-                        transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
-                    }}
-                >
-                    <ProjectCard project={project} />
-                </div>
-            ))}
+                {displayProjects.map((project, index) => (
+                    <div 
+                        key={`${project.id}-${index}`} 
+                        className="gallery-item flex-shrink-0 w-[95vw] md:w-[56rem] px-4"
+                        style={{ 
+                            willChange: 'transform, opacity',
+                            transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+                        }}
+                    >
+                        <ProjectCard project={project} />
+                    </div>
+                ))}
 
-            <div className="flex-shrink-0 w-[calc(50vw-45vw)] md:w-[calc(50vw-24rem)]"></div>
+                <div className="flex-shrink-0 w-[calc(50vw-47.5vw)] md:w-[calc(50vw-28rem)]"></div>
+            </div>
+
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3">
+                {projects.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handleDotClick(index)}
+                        aria-label={`Go to project ${index + 1}`}
+                        className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ease-in-out ${
+                            activeIndex === index
+                                ? 'scale-125 bg-blue-600 dark:bg-blue-400'
+                                : 'bg-gray-400 hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500'
+                        }`}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
