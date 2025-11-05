@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
@@ -14,10 +15,19 @@ export default defineConfig(({ mode }) => {
       plugins: [
         react(),
         {
-          name: 'create-nojekyll',
+          name: 'create-nojekyll-and-fix-html',
           writeBundle() {
             const nojekyllPath = path.join(process.cwd(), 'dist', '.nojekyll');
             fs.writeFileSync(nojekyllPath, '');
+
+            // Fix the HTML to remove type="module"
+            const htmlPath = path.join(process.cwd(), 'dist', 'index.html');
+            if (fs.existsSync(htmlPath)) {
+              let html = fs.readFileSync(htmlPath, 'utf-8');
+              html = html.replace(/type="module"\s+crossorigin/g, 'defer');
+              html = html.replace(/type="module"/g, '');
+              fs.writeFileSync(htmlPath, html);
+            }
           }
         }
       ],
@@ -25,6 +35,8 @@ export default defineConfig(({ mode }) => {
         target: 'es2015',
         rollupOptions: {
           output: {
+            format: 'iife',
+            name: 'MyApp',
             manualChunks: undefined,
           }
         }
