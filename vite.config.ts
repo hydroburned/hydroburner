@@ -11,7 +11,52 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       host: "0.0.0.0",
     },
-    plugins: [react()],
+    plugins: [
+      react(),
+      {
+        name: "fix-html-modules",
+        writeBundle() {
+          const nojekyllPath = path.join(process.cwd(), "dist", ".nojekyll");
+          fs.writeFileSync(nojekyllPath, "");
+
+          // Aggressively fix HTML to remove all module references
+          const htmlPath = path.join(process.cwd(), "dist", "index.html");
+          if (fs.existsSync(htmlPath)) {
+            let html = fs.readFileSync(htmlPath, "utf-8");
+
+            // Remove all module-related attributes
+            html = html.replace(/\s*type="module"/g, "");
+            html = html.replace(/\s*crossorigin/g, "");
+
+            // Ensure script tag is clean
+            html = html.replace(/<script\s+src="/g, '<script src="');
+
+            console.log(
+              "Fixed HTML:",
+              html.includes('type="module"')
+                ? "FAILED - still has modules"
+                : "SUCCESS - no modules"
+            );
+
+            fs.writeFileSync(htmlPath, html);
+          }
+        },
+      },
+    ],
+    build: {
+      target: "es2015",
+      rollupOptions: {
+        output: {
+          format: "iife",
+          name: "MyApp",
+          manualChunks: undefined,
+        },
+      },
+    },
+    define: {
+      "process.env.API_KEY": JSON.stringify(env.GEMINI_API_KEY),
+      "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY),
+    },
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "."),
