@@ -57,10 +57,10 @@ const HomePage: React.FC = () => {
                 View My Work
                 <ArrowRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <a href="./cv.pdf" download className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
+              <button onClick={() => alert('CV will be available soon!')} className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
                 Download CV
                 <DownloadIcon className="w-5 h-5" />
-              </a>
+              </button>
             </div>
             <div className="mt-10 flex items-center justify-start gap-6">
               <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="LinkedIn">

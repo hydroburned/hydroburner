@@ -2,7 +2,6 @@ import path from 'path';
 import fs from 'fs';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
@@ -15,17 +14,25 @@ export default defineConfig(({ mode }) => {
       plugins: [
         react(),
         {
-          name: 'create-nojekyll-and-fix-html',
+          name: 'fix-html-modules',
           writeBundle() {
             const nojekyllPath = path.join(process.cwd(), 'dist', '.nojekyll');
             fs.writeFileSync(nojekyllPath, '');
 
-            // Fix the HTML to remove type="module"
+            // Aggressively fix HTML to remove all module references
             const htmlPath = path.join(process.cwd(), 'dist', 'index.html');
             if (fs.existsSync(htmlPath)) {
               let html = fs.readFileSync(htmlPath, 'utf-8');
-              html = html.replace(/type="module"\s+crossorigin/g, 'defer');
-              html = html.replace(/type="module"/g, '');
+
+              // Remove all module-related attributes
+              html = html.replace(/\s*type="module"/g, '');
+              html = html.replace(/\s*crossorigin/g, '');
+
+              // Ensure script tag is clean
+              html = html.replace(/<script\s+src="/g, '<script src="');
+
+              console.log('Fixed HTML:', html.includes('type="module"') ? 'FAILED - still has modules' : 'SUCCESS - no modules');
+
               fs.writeFileSync(htmlPath, html);
             }
           }
