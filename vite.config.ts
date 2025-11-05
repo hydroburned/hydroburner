@@ -22,11 +22,10 @@ export default defineConfig(({ mode }) => {
         }
       ],
       build: {
+        target: 'es2015',
         rollupOptions: {
           output: {
-            assetFileNames: 'assets/[name].[ext]',
-            chunkFileNames: 'assets/[name].js',
-            entryFileNames: 'assets/[name].js'
+            manualChunks: undefined,
           }
         }
       },
