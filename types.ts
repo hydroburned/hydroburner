@@ -1,4 +1,3 @@
-
 export interface ProjectLink {
   label: string;
   url: string;
@@ -41,3 +40,6 @@ export interface LiveProject {
   domain: string;
   platform: string;
 }
+
+// NOTE: The 'spline-viewer' global type definition was moved to index.tsx
+// to resolve a JSX type conflict.

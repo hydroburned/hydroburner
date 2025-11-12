@@ -96,7 +96,18 @@
         animation: shimmer 1s ease-out;
       }
     </style>
-  </head>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.99/build/spline-viewer.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5"
+  }
+}
+</script>
+</head>
   <body class="antialiased">
     <script>
       // On page load or when changing themes, best to add inline in `head` to avoid FOUC

@@ -1,6 +1,5 @@
 
-
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { liveProjects } from '../data/live-projects';
@@ -15,6 +14,53 @@ import DownloadIcon from '../components/icons/DownloadIcon';
 import CurvedGallery from '../components/CurvedGallery';
 
 const HomePage: React.FC = () => {
+  const splineViewerRef = useRef<any>(null);
+
+  useEffect(() => {
+    const splineViewer = splineViewerRef.current;
+    if (!splineViewer) return;
+
+    let observer: MutationObserver | null = null;
+
+    const hideLogo = (root: ShadowRoot) => {
+      // Use a more general selector to find the logo
+      const logo = root.querySelector('.logo');
+      if (logo) {
+        (logo as HTMLElement).style.display = 'none';
+        return true;
+      }
+      return false;
+    };
+
+    const handleLoad = () => {
+      if (splineViewer.shadowRoot) {
+        if (hideLogo(splineViewer.shadowRoot)) {
+          // Logo found and hidden on initial load
+          return;
+        }
+
+        // If logo is not immediately available, set up an observer
+        observer = new MutationObserver(() => {
+          if (splineViewer.shadowRoot && hideLogo(splineViewer.shadowRoot)) {
+            // Logo found and hidden, disconnect observer
+            observer?.disconnect();
+            observer = null;
+          }
+        });
+
+        observer.observe(splineViewer.shadowRoot, { childList: true, subtree: true });
+      }
+    };
+    
+    // Spline viewer fires 'load' when the scene is ready
+    splineViewer.addEventListener('load', handleLoad);
+    
+    return () => {
+      // Clean up event listener and observer on component unmount
+      splineViewer.removeEventListener('load', handleLoad);
+      observer?.disconnect();
+    };
+  }, []);
 
   const values = [
     { title: 'User-Centric at the Core', description: 'I bridge user needs and business goals to create products that are both loved and profitable.' },
@@ -40,27 +86,27 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center">
         <FloatingGradient />
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 items-center">
           <div className="max-w-3xl">
             <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-white dark:to-gray-400">
-              Nikita Makarov
+              Hi it's Nikita
             </h1>
             <p className="font-heading mt-4 text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-200 transition-colors duration-300">
-              Senior Product Designer
+              Product Designer
             </p>
             
             <p className="mt-6 max-w-2xl text-lg md:text-xl text-gray-600 dark:text-gray-400 transition-colors duration-300">
-              A natural problem solver, I turn B2B chaos into scalable, beautiful systems that empower users and accelerate business growth.
+              A natural problem solver, I turn B2B goals into scalable, beautiful systems that empower users and accelerate business growth.
             </p>
             <div className="mt-12 flex flex-wrap items-center justify-start gap-4">
               <a href="#projects" onClick={handleScrollClick} className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
                 View My Work
                 <ArrowRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <button onClick={() => alert('CV will be available soon!')} className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
+              <a href="./cv.pdf" download className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
                 Download CV
                 <DownloadIcon className="w-5 h-5" />
-              </button>
+              </a>
             </div>
             <div className="mt-10 flex items-center justify-start gap-6">
               <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="LinkedIn">
@@ -69,6 +115,11 @@ const HomePage: React.FC = () => {
               <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="Telegram">
                 <TelegramIcon className="w-7 h-7" />
               </a>
+            </div>
+          </div>
+          <div className="hidden lg:flex w-full h-full justify-center items-center">
+            <div className="w-full h-full">
+              <spline-viewer ref={splineViewerRef} url="https://prod.spline.design/ID2MzOXuiKVfQk1w/scene.splinecode"></spline-viewer>
             </div>
           </div>
         </div>
