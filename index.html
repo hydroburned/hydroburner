@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nikita Makarov - Senior Product Designer</title>
+    <!-- Tailwind CSS (CDN for immediate usage without build step) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,6 @@
     <style>
       body {
         font-family: 'Onest', sans-serif;
-        /* Base (light) theme styles */
         background-color: #f5f5f5;
         color: #111827;
         background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0);
@@ -40,7 +40,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        /* Dark theme styles */
         background-color: #0a0a0a;
         background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
         background-size: 1.75rem 1.75rem;
@@ -95,23 +94,30 @@
       .group:hover .shimmer-bar::after {
         animation: shimmer 1s ease-out;
       }
+      /* Custom utility for gallery scrollbar hiding */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
     </style>
-    <!-- Updated Spline Viewer Script Version -->
+    <!-- Spline Viewer Script -->
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.0/build/spline-viewer.js"></script>
   <script type="importmap">
 {
   "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5"
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6"
   }
 }
 </script>
 </head>
   <body class="antialiased">
     <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
       } else {
@@ -119,6 +125,13 @@
       }
     </script>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+
+    <!-- React Dependencies (Production CDNs) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-router-dom@6.22.3/umd/react-router-dom.production.min.js"></script>
+
+    <!-- Main Application Bundle -->
+    <script src="./main.js"></script>
   </body>
 </html>

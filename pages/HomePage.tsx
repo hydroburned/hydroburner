@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
@@ -79,12 +78,7 @@ const HomePage: React.FC = () => {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <FloatingGradient />
         
-        {/* 3D Viewer - Optimized Layout
-            Mobile: 40vh height, full width
-            Tablet (md): 50vh height, full width
-            Desktop (lg): Full height, 45% width
-            Update: Reduced viewer size by 30% (w-[70%] h-[70%]) and centered to visually shrink the object.
-        */}
+        {/* 3D Viewer - Optimized Layout */}
         <div className="absolute top-0 right-0 w-full h-[40vh] md:h-[50vh] lg:w-[45%] lg:h-full z-0 pointer-events-none lg:pointer-events-auto flex items-center justify-center">
            <spline-viewer 
              ref={splineViewerRef} 
@@ -199,9 +193,7 @@ const HomePage: React.FC = () => {
 
       {/* Skills Section */}
       <div className="py-10">
-        <FadeIn direction="up">
-          <Skills />
-        </FadeIn>
+        <Skills />
       </div>
 
       {/* Values Section - Overflow visible for gradient bleeding */}
