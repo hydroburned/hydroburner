@@ -10,8 +10,8 @@ import TelegramIcon from '../components/icons/TelegramIcon';
 import ArrowRightIcon from '../components/icons/ArrowRightIcon';
 import Skills from '../components/Skills';
 import FloatingGradient from '../components/FloatingGradient';
-import DownloadIcon from '../components/icons/DownloadIcon';
 import CurvedGallery from '../components/CurvedGallery';
+import FadeIn from '../components/FadeIn';
 
 const HomePage: React.FC = () => {
   const splineViewerRef = useRef<any>(null);
@@ -23,7 +23,6 @@ const HomePage: React.FC = () => {
     let observer: MutationObserver | null = null;
 
     const hideLogo = (root: ShadowRoot) => {
-      // Use a more general selector to find the logo
       const logo = root.querySelector('.logo');
       if (logo) {
         (logo as HTMLElement).style.display = 'none';
@@ -35,28 +34,21 @@ const HomePage: React.FC = () => {
     const handleLoad = () => {
       if (splineViewer.shadowRoot) {
         if (hideLogo(splineViewer.shadowRoot)) {
-          // Logo found and hidden on initial load
           return;
         }
-
-        // If logo is not immediately available, set up an observer
         observer = new MutationObserver(() => {
           if (splineViewer.shadowRoot && hideLogo(splineViewer.shadowRoot)) {
-            // Logo found and hidden, disconnect observer
             observer?.disconnect();
             observer = null;
           }
         });
-
         observer.observe(splineViewer.shadowRoot, { childList: true, subtree: true });
       }
     };
     
-    // Spline viewer fires 'load' when the scene is ready
     splineViewer.addEventListener('load', handleLoad);
     
     return () => {
-      // Clean up event listener and observer on component unmount
       splineViewer.removeEventListener('load', handleLoad);
       observer?.disconnect();
     };
@@ -84,43 +76,63 @@ const HomePage: React.FC = () => {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <FloatingGradient />
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 items-center">
-          <div className="max-w-3xl">
-            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-white dark:to-gray-400">
-              Hi it's Nikita
-            </h1>
-            <p className="font-heading mt-4 text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-200 transition-colors duration-300">
-              Product Designer
-            </p>
+        
+        {/* 3D Viewer - Optimized Layout
+            Mobile: 40vh height, full width
+            Tablet (md): 50vh height, full width
+            Desktop (lg): Full height, 45% width
+            Update: Reduced viewer size by 30% (w-[70%] h-[70%]) and centered to visually shrink the object.
+        */}
+        <div className="absolute top-0 right-0 w-full h-[40vh] md:h-[50vh] lg:w-[45%] lg:h-full z-0 pointer-events-none lg:pointer-events-auto flex items-center justify-center">
+           <spline-viewer 
+             ref={splineViewerRef} 
+             url="https://prod.spline.design/ID2MzOXuiKVfQk1w/scene.splinecode"
+             className="w-[70%] h-[70%]"
+           ></spline-viewer>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center">
+          {/* Content Padding adjusted to clear 3D viewer on mobile/tablet */}
+          <div className="max-w-3xl pt-[42vh] md:pt-[52vh] lg:pt-0">
+            <FadeIn delay={100} direction="up">
+              <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-b dark:from-white dark:to-gray-400">
+                Hi it's Nikita
+              </h1>
+            </FadeIn>
             
-            <p className="mt-6 max-w-2xl text-lg md:text-xl text-gray-600 dark:text-gray-400 transition-colors duration-300">
-              A natural problem solver, I turn B2B goals into scalable, beautiful systems that empower users and accelerate business growth.
-            </p>
-            <div className="mt-12 flex flex-wrap items-center justify-start gap-4">
-              <a href="#projects" onClick={handleScrollClick} className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
-                View My Work
-                <ArrowRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a href="./cv.pdf" download className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
-                Download CV
-                <DownloadIcon className="w-5 h-5" />
-              </a>
-            </div>
-            <div className="mt-10 flex items-center justify-start gap-6">
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="LinkedIn">
-                <LinkedInIcon className="w-7 h-7" />
-              </a>
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="Telegram">
-                <TelegramIcon className="w-7 h-7" />
-              </a>
-            </div>
-          </div>
-          <div className="hidden lg:flex w-full h-full justify-center items-center">
-            <div className="w-full h-full">
-              <spline-viewer ref={splineViewerRef} url="https://prod.spline.design/ID2MzOXuiKVfQk1w/scene.splinecode"></spline-viewer>
-            </div>
+            <FadeIn delay={200} direction="up">
+              <p className="font-heading mt-4 text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-200 transition-colors duration-300">
+                Product Designer
+              </p>
+            </FadeIn>
+            
+            <FadeIn delay={300} direction="up">
+              <p className="mt-6 max-w-2xl text-lg md:text-xl text-gray-600 dark:text-gray-400 transition-colors duration-300">
+                A natural problem solver, I turn B2B goals into scalable, beautiful systems that empower users and accelerate business growth.
+              </p>
+            </FadeIn>
+            
+            <FadeIn delay={400} direction="up">
+              <div className="mt-12 flex flex-wrap items-center justify-start gap-4">
+                <a href="#projects" onClick={handleScrollClick} className="inline-flex items-center gap-2 px-8 py-4 bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white rounded-full backdrop-blur-sm border border-black/10 dark:border-white/20 hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 group">
+                  View My Work
+                  <ArrowRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </FadeIn>
+            
+            <FadeIn delay={500} direction="up">
+              <div className="mt-10 flex items-center justify-start gap-6">
+                <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="LinkedIn">
+                  <LinkedInIcon className="w-7 h-7" />
+                </a>
+                <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300" aria-label="Telegram">
+                  <TelegramIcon className="w-7 h-7" />
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -130,16 +142,20 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl grid md:grid-cols-3 gap-8 md:gap-12 items-center">
               <div className="md:col-span-1">
-                <img src="https://picsum.photos/seed/portrait/500/500" alt="Nikita Makarov" className="rounded-full aspect-square object-cover mx-auto w-48 h-48 md:w-full md:h-auto" />
+                <FadeIn direction="right" delay={100}>
+                  <img src="https://picsum.photos/seed/portrait/500/500" alt="Nikita Makarov" className="rounded-full aspect-square object-cover mx-auto w-48 h-48 md:w-full md:h-auto shadow-2xl dark:shadow-blue-900/20" />
+                </FadeIn>
               </div>
               <div className="md:col-span-2">
-                <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight">About Me</h2>
-                <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                  With 8+ years in the trenches of SaaS, I've honed my craft shaping complex B2B/B2C products for web and mobile. My journey began in industrial design, which instilled in me a deep appreciation for form, function, and human-centered problem-solving.
-                </p>
-                <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                  When I'm not untangling user flows, you'll find me trying to catch waves—a passion that teaches me patience and respect for powerful systems. I thrive in remote, global teams and am currently planning a relocation to Brazil with my family, embracing new cultures and perspectives.
-                </p>
+                <FadeIn direction="left" delay={200}>
+                  <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">About Me</h2>
+                  <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 transition-colors duration-300 leading-relaxed">
+                    With 8+ years in the trenches of SaaS, I've honed my craft shaping complex B2B/B2C products for web and mobile. My journey began in industrial design, which instilled in me a deep appreciation for form, function, and human-centered problem-solving.
+                  </p>
+                  <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 transition-colors duration-300 leading-relaxed">
+                    When I'm not untangling user flows, you'll find me trying to catch waves—a passion that teaches me patience and respect for powerful systems. I thrive in remote, global teams and am currently planning a relocation to Brazil with my family, embracing new cultures and perspectives.
+                  </p>
+                </FadeIn>
               </div>
             </div>
         </div>
@@ -148,66 +164,86 @@ const HomePage: React.FC = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 md:py-32 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12 md:mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight">Selected Projects</h2>
-          <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300 mx-auto">
-            A selection of projects where I've made a tangible impact.
-          </p>
+          <FadeIn direction="up">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">Selected Projects</h2>
+            <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300 mx-auto">
+              A selection of projects where I've made a tangible impact.
+            </p>
+          </FadeIn>
         </div>
-        <CurvedGallery projects={projects} />
+        <FadeIn delay={200} direction="up" fullWidth>
+          <CurvedGallery projects={projects} />
+        </FadeIn>
       </section>
 
       {/* Live Websites Section */}
-      <section id="live-sites" className="py-20 md:py-32 scroll-mt-20">
+      <section id="live-sites" className="py-20 md:py-32 scroll-mt-20 bg-gray-50/50 dark:bg-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-left mb-12 md:mb-16">
-                <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight">Live Websites</h2>
-                <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-                    A few client projects I've designed and built from the ground up.
-                </p>
+                <FadeIn direction="up">
+                  <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">Live Websites</h2>
+                  <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+                      A few client projects I've designed and built from the ground up.
+                  </p>
+                </FadeIn>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {liveProjects.slice(0, 4).map(project => (
-                    <LiveProjectCard key={project.id} project={project} />
+                {liveProjects.slice(0, 4).map((project, index) => (
+                    <FadeIn key={project.id} delay={index * 150} className="h-full" direction="up">
+                        <LiveProjectCard project={project} />
+                    </FadeIn>
                 ))}
             </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <Skills />
+      <div className="py-10">
+        <FadeIn direction="up">
+          <Skills />
+        </FadeIn>
+      </div>
 
-      {/* Values Section */}
-      <section id="values" className="relative py-20 md:py-32 scroll-mt-20">
+      {/* Values Section - Overflow visible for gradient bleeding */}
+      <section id="values" className="relative py-20 md:py-32 scroll-mt-20 overflow-visible">
         <FloatingGradient reverse={true} />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl text-left mb-12 md:mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight">My Design Philosophy</h2>
-            <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300">
-              The core principles that guide my work and my approach to problem-solving.
-            </p>
+            <FadeIn direction="right">
+              <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">My Design Philosophy</h2>
+              <p className="mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300">
+                The core principles that guide my work and my approach to problem-solving.
+              </p>
+            </FadeIn>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {values.map((value) => (
-              <div key={value.title} className="bg-white/30 dark:bg-gray-900/40 backdrop-blur-lg p-6 rounded-2xl border border-white/40 dark:border-white/20 transition-all duration-300 hover:border-blue-500/50 hover:-translate-y-1">
-                <h3 className="font-heading text-xl font-bold text-gray-900 dark:text-white transition-colors duration-300">{value.title}</h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-400 transition-colors duration-300">{value.description}</p>
-              </div>
+            {values.map((value, index) => (
+              <FadeIn key={value.title} delay={index * 150} className="h-full" direction="up">
+                <div className="bg-white/40 dark:bg-gray-900/60 backdrop-blur-lg p-8 rounded-2xl border border-white/50 dark:border-white/10 transition-all duration-300 hover:border-blue-500/50 hover:bg-white/60 dark:hover:bg-gray-800/80 hover:-translate-y-1 shadow-lg dark:shadow-none h-full">
+                  <h3 className="font-heading text-2xl font-bold text-gray-900 dark:text-white transition-colors duration-300 mb-3">{value.title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300 transition-colors duration-300 leading-relaxed">{value.description}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 md:py-32 scroll-mt-20 pb-28 md:pb-20">
+      {/* Contact Section - Overflow visible to not cut off gradient from above */}
+      <section id="contact" className="relative z-10 py-20 md:py-32 scroll-mt-20 pb-28 md:pb-20 overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl text-center mx-auto">
-              <h2 className="font-heading text-5xl md:text-7xl font-bold tracking-tight">Let's work together.</h2>
-              <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                Have a project in mind? I'm always open to discussing new opportunities, collaborations, or just talking about design and surfing.
-              </p>
-              <a href="mailto:contact@example.com" className="mt-12 inline-block text-2xl md:text-3xl font-medium text-gray-900 dark:text-white border-b-2 border-dotted border-gray-400 dark:border-gray-500 hover:border-gray-900 dark:hover:border-white transition-colors duration-300">
-                Get in touch
-              </a>
+              <FadeIn delay={100} direction="up">
+                <h2 className="font-heading text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">Let's work together.</h2>
+                <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 transition-colors duration-300">
+                  Have a project in mind? I'm always open to discussing new opportunities, collaborations, or just talking about design and surfing.
+                </p>
+                <div className="mt-12">
+                  <a href="mailto:contact@example.com" className="inline-block text-2xl md:text-3xl font-medium text-gray-900 dark:text-white border-b-2 border-dotted border-gray-400 dark:border-gray-500 hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 pb-1">
+                    Get in touch
+                  </a>
+                </div>
+              </FadeIn>
             </div>
         </div>
       </section>

@@ -257,7 +257,8 @@
       const observer = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
-          if (entry.isİntersecting) {
+          // FIX: Corrected typo from `isİntersecting` to `isIntersecting`.
+          if (entry.isIntersecting) {
             hasBeenCentered.current = true;
   
             const firstItem = scrollContainer.querySelector('.gallery-item');

@@ -1,3 +1,6 @@
+// NOTE: The side-effect 'react' import for loading global JSX types was moved to index.tsx
+// to provide a more reliable, application-wide fix for JSX type errors.
+
 export interface ProjectLink {
   label: string;
   url: string;
