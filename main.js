@@ -1,10 +1,18 @@
 (function () {
   'use strict';
 
+  // --- SAFETY CHECK ---
+  if (!window.React || !window.ReactDOM || !window.ReactRouterDOM) {
+    console.error('Critical Error: React or ReactRouterDOM failed to load from CDN.');
+    document.body.innerHTML = '<div style="color:white; text-align:center; padding-top:50px; font-family:sans-serif;"><h1>Failed to load libraries</h1><p>Please check your internet connection or ad-blocker settings.</p></div>';
+    return;
+  }
+
   // --- GLOBALS FROM CDN ---
   const React = window.React;
   const ReactDOM = window.ReactDOM;
   const ReactRouterDOM = window.ReactRouterDOM;
+  
   const { useState, useEffect, useRef, createContext, useContext, useCallback, StrictMode } = React;
   const { createRoot } = ReactDOM;
   const { HashRouter, Routes, Route, useLocation, Navigate, Link, useParams } = ReactRouterDOM;
@@ -732,6 +740,7 @@
       ))))
     );
   };
+
   const CaseStudyPage = () => {
     const { projectId } = useParams();
     const project = projects.find(p => p.id === projectId);
